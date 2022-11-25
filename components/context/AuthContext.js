@@ -8,6 +8,7 @@ export const AuthContext = createContext();
 export const AuthProvider = ({children}) => {
   const [userInfo, setUserInfo] = useState({});
   const [anunciosInfo, setAnunciosInfo] = useState({});
+  const [materiasInfo, setMateriasInfo] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [splashLoading, setSplashLoading] = useState(false);
 
@@ -74,10 +75,26 @@ export const AuthProvider = ({children}) => {
 
   const anuncios = ()=>{
     setIsLoading(true);
+
     axios.get(`${BASE_URL}/ver-publicaciones-globales`)
     .then(res => {
-      let anunciosInfo = res.data;
+      let anunciosInfo = res.data.reverse();
       setAnunciosInfo(anunciosInfo);
+      setIsLoading(false);
+    })
+    .catch(e => {
+      console.log(`login error ${e}`);
+      setIsLoading(false);
+    });
+  }
+
+  const materias = ()=>{
+    setIsLoading(true);
+
+    axios.get(`${BASE_URL}/ver-materias`)
+    .then(res => {
+      let materiasInfo = res.data;
+      setMateriasInfo(materiasInfo);
       setIsLoading(false);
     })
     .catch(e => {
@@ -99,7 +116,9 @@ export const AuthProvider = ({children}) => {
         login,
         logout,
         anuncios,
-        anunciosInfo
+        anunciosInfo,
+        materias,
+        materiasInfo
       }}>
       {children}
     </AuthContext.Provider>

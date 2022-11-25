@@ -37,6 +37,7 @@ export const Tabs = ()=>{
         <Tab.Screen name="Home" component={Home} />
         <Tab.Screen name="Notas" component={Notas} />
         <Tab.Screen name="Inasistencias" component={Inasistencias} />
+        
       </Tab.Navigator>
     )
 }

@@ -6,14 +6,15 @@ import Spinner from 'react-native-loading-spinner-overlay';
 import {AuthContext} from '../context/AuthContext';
 
 
-export default function Home({ navigation }) {
+export default function Home() {
   const {userInfo, isLoading, logout} = useContext(AuthContext);
+  //console.log(isLoading)
   return (
     <View style={styles.mainContainer}>
         <Spinner visible={isLoading} />
       <View style={styles.container}>
        <Text style={styles.titulo}>APP</Text>
-       <Text style={styles.subtitulo}>Welcome {userInfo.user.nombre}</Text>
+       <Text style={styles.subtitulo}>Bienvenido {userInfo.user.nombre}</Text>
        <Button
         title="Cerrar Session"
         onPress={() => logout()}

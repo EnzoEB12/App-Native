@@ -21,8 +21,14 @@ export default function App({ navigation }) {
         source={require('../../assets/svg.png')}
       />
        </View>
-      <Text style={styles.titulo}>APP</Text>
-      <Text style={styles.subtitulo}>Instituto Random</Text>
+       <View style={styles.containerLogo}>
+       <Image   
+       style={styles.logoIMG}
+        source={require('../../assets/logo2.png')}
+      />
+       </View>
+      <Text style={styles.titulo}></Text>
+    
       <TextInput style={styles.inputLogin}
       placeholder='DNI'
       value={dni}
@@ -71,6 +77,16 @@ const styles = StyleSheet.create({
   containerSVG: {
     justifyContent: 'flex-start',
     alignItems:'center',
+  },
+  containerLogo: {
+    position: 'absolute',
+    alignItems:'center',
+  
+  },
+  logoIMG: {
+    button: 150,
+    width: 450,
+    height: 450
   },
   titulo: {
     fontSize: 80,
