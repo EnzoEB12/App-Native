@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Home from '../components/pages/Home';
 import Anuncios from '../components/pages/Anuncios';
@@ -6,10 +6,12 @@ import Notas from '../components/pages/Notas';
 import Inasistencias from '../components/pages/Inasistencias';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 const Tab = createBottomTabNavigator();
-
+import {AuthContext} from '../components/context/AuthContext';
 export const Tabs = ()=>{
+  const {userInfo, logout} = useContext(AuthContext);
+  console.log()
     return(
-        <Tab.Navigator
+        <Tab.Navigator initialRouteName='Home'
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
             let iconName;
@@ -33,10 +35,22 @@ export const Tabs = ()=>{
           tabBarInactiveTintColor: 'gray',
         })}
       >
-        <Tab.Screen name="Anuncios" component={Anuncios} />
-        <Tab.Screen name="Home" component={Home} />
-        <Tab.Screen name="Notas" component={Notas} />
-        <Tab.Screen name="Inasistencias" component={Inasistencias} />
+        {
+          userInfo?.user?.perfiles[0]?.tipo[0].alumno == true ?
+          <>
+          <Tab.Screen name="Anuncios" component={Anuncios} />
+          <Tab.Screen name="Home" component={Home} />
+          <Tab.Screen name="Notas" component={Notas} />
+          <Tab.Screen name="Inasistencias" component={Inasistencias} />
+          </>
+          : 
+          <>
+          <Tab.Screen name="Home" component={Home} />
+          <Tab.Screen name="Anuncios" component={Anuncios} />
+         
+          </>
+        }
+        
         
       </Tab.Navigator>
     )

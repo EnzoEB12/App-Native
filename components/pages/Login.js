@@ -9,7 +9,7 @@ import Spinner from 'react-native-loading-spinner-overlay';
 export default function App({ navigation }) {
     const [dni, setDni] = useState(null);
     const [contrasena, setContrasena] = useState(null);
-    const {isLoading, login} = useContext(AuthContext);
+    const {isLoading, login, mensajeError} = useContext(AuthContext);
 
   return (
     <View style={styles.mainContainer}>
@@ -27,8 +27,7 @@ export default function App({ navigation }) {
         source={require('../../assets/logo2.png')}
       />
        </View>
-      <Text style={styles.titulo}></Text>
-    
+
       <TextInput style={styles.inputLogin}
       placeholder='DNI'
       value={dni}
@@ -44,6 +43,15 @@ export default function App({ navigation }) {
       <ButtonG/>
       
       </TouchableWithoutFeedback> */}
+      {
+        mensajeError == true ?
+       <View>
+         <Text></Text>
+        <Text style={{color: 'red'}}>Usuario No Encontrado</Text>
+       </View>
+        :
+        null
+      }
       <TouchableOpacity     style={styles.containerButton} onPress={() => {
             login(dni, contrasena);
           }}>
@@ -81,10 +89,9 @@ const styles = StyleSheet.create({
   containerLogo: {
     position: 'absolute',
     alignItems:'center',
-  
+    top: 10
   },
   logoIMG: {
-    button: 150,
     width: 450,
     height: 450
   },
@@ -106,7 +113,6 @@ const styles = StyleSheet.create({
     marginTop: 20,
     borderRadius: 30,
     backgroundColor: '#fff',
-
   },
   containerButton:{
     flex: 1,

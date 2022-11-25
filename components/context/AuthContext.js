@@ -11,12 +11,12 @@ export const AuthProvider = ({children}) => {
   const [materiasInfo, setMateriasInfo] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [splashLoading, setSplashLoading] = useState(false);
-
+  const [mensajeError, setMensajeError] = useState(false);
 
   
   const login = (dni, contrasena) => {
     setIsLoading(true);
-   
+    setMensajeError(false)
 
     const body = JSON.stringify({dni, contrasena})
 
@@ -35,10 +35,13 @@ export const AuthProvider = ({children}) => {
         setUserInfo(userInfo);
         AsyncStorage.setItem('userInfo', JSON.stringify(userInfo));
         setIsLoading(false);
+        setMensajeError(false)
       })
       .catch(e => {
         console.log(`login error ${e}`);
+        //console.log(e.response.data.msg)
         setIsLoading(false);
+        setMensajeError(true)
       });
   };
 
@@ -118,7 +121,8 @@ export const AuthProvider = ({children}) => {
         anuncios,
         anunciosInfo,
         materias,
-        materiasInfo
+        materiasInfo,
+        mensajeError
       }}>
       {children}
     </AuthContext.Provider>

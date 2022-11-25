@@ -2,7 +2,6 @@
 import React, {useContext} from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Home from '../components/pages/Home';
 import Login from '../components/pages/Login';
 import SplashScreen from '../components/pages/SplashScreen';
 import {AuthContext} from '../components/context/AuthContext';
