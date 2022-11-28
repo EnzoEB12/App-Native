@@ -35,7 +35,11 @@ export const Tabs = ()=>{
           tabBarInactiveTintColor: 'gray',
         })}
       >
-        {
+        <Tab.Screen name="Anuncios" component={Anuncios} />
+          <Tab.Screen name="Home" component={Home} />
+          <Tab.Screen name="Notas" component={Notas} />
+          <Tab.Screen name="Inasistencias" component={Inasistencias} />
+        {/* {
           userInfo?.user?.perfiles[0]?.tipo[0].alumno == true ?
           <>
           <Tab.Screen name="Anuncios" component={Anuncios} />
@@ -49,7 +53,7 @@ export const Tabs = ()=>{
           <Tab.Screen name="Anuncios" component={Anuncios} />
          
           </>
-        }
+        } */}
         
         
       </Tab.Navigator>
